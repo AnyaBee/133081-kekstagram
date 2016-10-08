@@ -27,6 +27,6 @@ function getMessage(a,b){
   }
   return pictureReturn;
 }
-""
+
 
 
