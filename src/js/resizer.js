@@ -135,6 +135,14 @@
       this._ctx.fillStyle = "rgba(0,0,0,0.8)";
       this._ctx.fill('evenodd');
 
+      this._ctx.textBaseline = 'hanging';
+      this._ctx.fillStyle = 'white';
+      this._ctx.textAlign="center";
+      this._ctx.font = '14px Arial';
+      this._ctx.fillText(this._image.naturalWidth +' x ' + this._image.naturalHeight, (opaqueFrame1 + opaqueFrame2) / 2, opaqueFrame2 - 20);
+
+
+
       // Восстановление состояния канваса, которое было до вызова ctx.save
       // и последующего изменения системы координат. Нужно для того, чтобы
       // следующий кадр рисовался с привычной системой координат, где точка
@@ -143,10 +151,7 @@
       // сложные рассчеты для координат прямоугольника, который нужно очистить.
       this._ctx.restore();
 
-      this._ctx.textBaseline = 'hanging';
-      this._ctx.fillStyle = 'white';
-      this._ctx.font = '14px Arial';
-      this._ctx.fillText(this._image.naturalWidth +' x ' + this._image.naturalHeight, 0, 0);
+
 
     },
 
