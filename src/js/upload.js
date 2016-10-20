@@ -71,26 +71,46 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
-  var resizeX = document.querySelector('#resize-x').value;
-  var resizeY = document.querySelector('#resize-y').value;
-  var resizeSize = document.querySelector('#resize-size').value;
-  var resizeXminimum = document.querySelector('#resize-x');
-  var resizeYminimum = document.querySelector('#resize-y');
-
-  resizeXminimum.min = 0;
-  resizeYminimum.min = 0;
+  var resizeXMinimum = document.querySelector('#resize-x');
+  var resizeYMinimum = document.querySelector('#resize-y');
+  var resizeSizeMinimum = document.querySelector('#resize-size');
+  resizeXMinimum.min = 0;
+  resizeYMinimum.min = 0;
 
   var resizeFormIsValid = function() {
-    console.log('resizeX is ' + resizeX);
-    console.log('resizeSize ' + resizeSize);
+    var resizeX = document.querySelector('#resize-x').value;
+    var resizeY = document.querySelector('#resize-y').value;
+    var resizeSize = document.querySelector('#resize-size').value;
     if (resizeX + resizeSize <= currentResizer._image.naturalWidth || resizeY + resizeSize <= currentResizer._image.naturalHeight) {
+      document.getElementById('resize-fwd').disabled = false;
+      console.log('1');
+      console.log('resizeX is' + resizeX);
+      console.log('resizeY is' + resizeY);
+      console.log('resizeSize' + resizeSize);
+      console.log('width' + currentResizer._image.naturalWidth);
+      console.log('height' + currentResizer._image.naturalHeight);
       return true;
     } else {
-      document.querySelector('#resize-fwd').setAttribute('disabled', 'true');
+      console.log('2');
+      console.log('resizeX is' + resizeX);
+      console.log('resizeY is' + resizeY);
+      console.log('resizeSize' + resizeSize);
+      console.log('width' + currentResizer._image.naturalWidth);
+      console.log('height' + currentResizer._image.naturalHeight);
+      document.getElementById('resize-fwd').disabled = true;
       return false;
     }
   };
+  resizeXMinimum.oninput = function() {
+    resizeFormIsValid();
+  };
 
+  resizeYMinimum.oninput = function() {
+    resizeFormIsValid();
+  };
+  resizeSizeMinimum.oninput = function() {
+    resizeFormIsValid();
+  };
   /**
    * Форма загрузки изображения.
    * @type {HTMLFormElement}
