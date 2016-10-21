@@ -74,6 +74,7 @@
   var resizeXMinimum = document.querySelector('#resize-x');
   var resizeYMinimum = document.querySelector('#resize-y');
   var resizeSizeMinimum = document.querySelector('#resize-size');
+  var forwardButton = document.getElementById('resize-fwd');
   resizeXMinimum.min = 0;
   resizeYMinimum.min = 0;
 
@@ -81,7 +82,6 @@
     var resizeX = parseInt(resizeXMinimum.value, 10);
     var resizeY = parseInt(resizeYMinimum.value, 10);
     var resizeSize = parseInt(resizeSizeMinimum.value, 10);
-    var forwardButton = document.getElementById('resize-fwd');
     var inputRestrictions = resizeX + resizeSize <= currentResizer._image.naturalWidth && resizeY + resizeSize <= currentResizer._image.naturalHeight;
     forwardButton.disabled = !inputRestrictions;
     return inputRestrictions;
