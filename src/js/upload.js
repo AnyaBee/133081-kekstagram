@@ -71,10 +71,31 @@
    * Проверяет, валидны ли данные, в форме кадрирования.
    * @return {boolean}
    */
+  var resizeXMinimum = document.querySelector('#resize-x');
+  var resizeYMinimum = document.querySelector('#resize-y');
+  var resizeSizeMinimum = document.querySelector('#resize-size');
+  var forwardButton = document.getElementById('resize-fwd');
+  resizeXMinimum.min = 0;
+  resizeYMinimum.min = 0;
+
   var resizeFormIsValid = function() {
-    return true;
+    var resizeX = parseInt(resizeXMinimum.value, 10);
+    var resizeY = parseInt(resizeYMinimum.value, 10);
+    var resizeSize = parseInt(resizeSizeMinimum.value, 10);
+    var inputRestrictions = resizeX + resizeSize <= currentResizer._image.naturalWidth && resizeY + resizeSize <= currentResizer._image.naturalHeight;
+    forwardButton.disabled = !inputRestrictions;
+    return inputRestrictions;
+  };
+  resizeXMinimum.oninput = function() {
+    resizeFormIsValid();
   };
 
+  resizeYMinimum.oninput = function() {
+    resizeFormIsValid();
+  };
+  resizeSizeMinimum.oninput = function() {
+    resizeFormIsValid();
+  };
   /**
    * Форма загрузки изображения.
    * @type {HTMLFormElement}
@@ -264,3 +285,4 @@
   cleanupResizer();
   updateBackground();
 })();
+
