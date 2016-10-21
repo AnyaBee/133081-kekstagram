@@ -81,22 +81,13 @@
     var resizeX = document.querySelector('#resize-x').value;
     var resizeY = document.querySelector('#resize-y').value;
     var resizeSize = document.querySelector('#resize-size').value;
-    if (resizeX + resizeSize <= currentResizer._image.naturalWidth || resizeY + resizeSize <= currentResizer._image.naturalHeight) {
+    resizeX = parseInt(resizeX, 10);
+    resizeY = parseInt(resizeY, 10);
+    resizeSize = parseInt(resizeSize, 10);
+    if (resizeX + resizeSize <= currentResizer._image.naturalWidth && resizeY + resizeSize <= currentResizer._image.naturalHeight) {
       document.getElementById('resize-fwd').disabled = false;
-      console.log('1');
-      console.log('resizeX is' + resizeX);
-      console.log('resizeY is' + resizeY);
-      console.log('resizeSize' + resizeSize);
-      console.log('width' + currentResizer._image.naturalWidth);
-      console.log('height' + currentResizer._image.naturalHeight);
       return true;
     } else {
-      console.log('2');
-      console.log('resizeX is' + resizeX);
-      console.log('resizeY is' + resizeY);
-      console.log('resizeSize' + resizeSize);
-      console.log('width' + currentResizer._image.naturalWidth);
-      console.log('height' + currentResizer._image.naturalHeight);
       document.getElementById('resize-fwd').disabled = true;
       return false;
     }
