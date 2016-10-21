@@ -82,14 +82,9 @@
     var resizeY = parseInt(resizeYMinimum.value, 10);
     var resizeSize = parseInt(resizeSizeMinimum.value, 10);
     var forwardButton = document.getElementById('resize-fwd');
-    if (resizeX + resizeSize <= currentResizer._image.naturalWidth && resizeY + resizeSize <= currentResizer._image.naturalHeight) {
-
-      forwardButton.disabled = false;
-      return true;
-    } else {
-      forwardButton.disabled = true;
-      return false;
-    }
+    var inputRestrictions = resizeX + resizeSize <= currentResizer._image.naturalWidth && resizeY + resizeSize <= currentResizer._image.naturalHeight;
+    forwardButton.disabled = !inputRestrictions;
+    return inputRestrictions;
   };
   resizeXMinimum.oninput = function() {
     resizeFormIsValid();
