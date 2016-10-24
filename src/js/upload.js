@@ -298,7 +298,7 @@
   var checkedInput = filterForm.getElementsByTagName('input');
   for (var i = 0; i < checkedInput.length; i++) {
     if (checkedInput[i].value === myCookie) {
-      checkedInput[i].checked = true;
+      checkedInput[i].setAttribute('checked', '');
     }
   }
   cleanupResizer();
