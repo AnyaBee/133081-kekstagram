@@ -275,66 +275,34 @@
     var selectedFilter = [].filter.call(filterForm['upload-filter'], function(item) {
       return item.checked;
     })[0].value;
-    console.log('selectedFilter is' + selectedFilter);
-
-    var expiryDate = cookieExpiration();
-    Cookies.set('upload-filter', selectedFilter, { expires: expiryDate });
-
-    var myCookie = Cookies.get('upload-filter');
-    console.log('myCookie is ' + myCookie);
-    var y = function(myCookie) {
-      var formElem = document.getElementById('upload-filter');
-      var checkedInput = formElem.getElementsByTagName('input');
-      var i;
-      for (i = 0; i < checkedInput.length; i++) {
-        console.log('tagname is ' + checkedInput);
-        if ((checkedInput[i].type = 'radio') && (checkedInput[i].value = myCookie)) {
-          checkedInput[i].checked = true;
-        } else {
-          document.getElementById('upload-filter-none').checked = true;
-        }
-      }
-    };
-
+    window.Cookies.set('upload-filter', selectedFilter, { expires: cookieExpiration() });
     // Класс перезаписывается, а не обновляется через classList потому что нужно
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
   };
 
+  var cookieExpiration = function() {
+    var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    var currentTime = new Date();
+    var currentYear = currentTime.getFullYear();
+    var birthdayDate = new Date(currentYear + '-12-9');
+
+    if(currentTime < birthdayDate) {
+      birthdayDate.setFullYear(currentYear - 1);
+    }
+    return Math.round((currentTime - birthdayDate) / (oneDay));
+  };
+
+  var myCookie = window.Cookies.get('upload-filter');
+  var checkedInput = filterForm.getElementsByTagName('input');
+  for (var i = 0; i < checkedInput.length; i++) {
+    if (checkedInput[i].value === myCookie) {
+      checkedInput[i].checked = true;
+    }
+  }
   cleanupResizer();
   updateBackground();
 })();
 
-var cookieExpiration = function() {
-  var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
-  var currentTime = new Date();
-  var currentYear = currentTime.getFullYear();
-  do{
-    var birthdayDate = new Date(currentYear + '-12-9');
-    var diffDays = Math.round((currentTime.getTime() - birthdayDate.getTime()) / (oneDay));
-    currentYear = currentYear - 1;
-  }
-  while (diffDays < 0);
-  return diffDays;
-};
-
-
-/*var myCookie = Cookies.get('upload-filter');
-console.log('myCookie is ' + myCookie);
-var y = function(myCookie) {
-  var formElem = document.getElementById('upload-filter');
-  var checkedInput = formElem.getElementsByTagName('input');
-  var i;
-  for (i = 0; i < checkedInput.length; i++) {
-    console.log('tagname is ' + checkedInput);
-    if ((checkedInput[i].type = 'radio') && (checkedInput[i].value = myCookie)){
-      checkedInput[i].checked = true;
-    } else {
-      document.getElementById('upload-filter-none').checked = true;
-    }
-  }
-};
-y(myCookie);
-*/
 
