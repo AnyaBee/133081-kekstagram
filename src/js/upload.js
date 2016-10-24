@@ -275,14 +275,34 @@
     var selectedFilter = [].filter.call(filterForm['upload-filter'], function(item) {
       return item.checked;
     })[0].value;
-
+    window.Cookies.set('upload-filter', selectedFilter, { expires: cookieExpiration() });
     // Класс перезаписывается, а не обновляется через classList потому что нужно
     // убрать предыдущий примененный класс. Для этого нужно или запоминать его
     // состояние или просто перезаписывать.
     filterImage.className = 'filter-image-preview ' + filterMap[selectedFilter];
   };
 
+  var cookieExpiration = function() {
+    var oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
+    var currentTime = new Date();
+    var currentYear = currentTime.getFullYear();
+    var birthdayDate = new Date(currentYear + '-12-9');
+
+    if(currentTime < birthdayDate) {
+      birthdayDate.setFullYear(currentYear - 1);
+    }
+    return Math.round((currentTime - birthdayDate) / (oneDay));
+  };
+
+  var myCookie = window.Cookies.get('upload-filter');
+  var checkedInput = filterForm.getElementsByTagName('input');
+  for (var i = 0; i < checkedInput.length; i++) {
+    if (checkedInput[i].value === myCookie) {
+      checkedInput[i].setAttribute('checked', '');
+    }
+  }
   cleanupResizer();
   updateBackground();
 })();
+
 
