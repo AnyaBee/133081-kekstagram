@@ -122,11 +122,11 @@ var loadImages = function(picture) {
 
   var image = new Image(182, 182);
   image.onload = function() {
-    imageElement.querySelector('.picture-url').src = image.src;
+    imageElement.querySelector('img').src = image.src;
   };
   image.src = picture.url;
 
-  imageElement.querySelector('.picture-url').onerror = function() {
+  imageElement.querySelector('img').onerror = function() {
     document.querySelector('.picture').classList.add('picture-load-failure');
   };
 
