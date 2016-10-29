@@ -121,18 +121,15 @@ var loadImages = function(picture) {
   var imageElement = imageTemplate.cloneNode(true);
   imageElement.querySelector('.picture-likes').textContent = picture.likes;
   imageElement.querySelector('.picture-comments').textContent = picture.comments;
-  console.log(templateContainer);
 
   var image = new Image(182, 182);
   image.onload = function() {
     imageElement.querySelector('img').src = image.src;
   };
-  image.src = picture.url;
-
   image.onerror = function() {
     imageElement.querySelector('.picture').classList.add('picture-load-failure');
   };
-
+  image.src = picture.url;
   return imageElement;
 };
 var initialiseImages = function(images) {
