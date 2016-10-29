@@ -3,7 +3,7 @@
  */
 'use strict';
 
-var imageInit = function() {
+(function() {
   var pictures = [{
       "likes": 40,
       "comments": 12,
@@ -123,6 +123,7 @@ var imageInit = function() {
     image.onload = function() {
       imageElement.querySelector('img').src = image.src;
     };
+
     image.onerror = function() {
       imageElement.classList.add('picture-load-failure');
     };
@@ -136,6 +137,5 @@ var imageInit = function() {
   };
   initialiseImages(pictures);
   document.querySelector('.filters').classList.remove('hidden');
-};
 
-imageInit();
+})();
