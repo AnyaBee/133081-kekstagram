@@ -126,7 +126,7 @@ var loadImages = function(picture) {
   };
   image.src = picture.url;
 
-  imageElement.querySelector('img').onerror = function() {
+  image.onerror = function() {
     document.querySelector('.picture').classList.add('picture-load-failure');
   };
 
