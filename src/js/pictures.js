@@ -113,12 +113,15 @@ var pictures = [{
 document.querySelector('.filters').classList.add('hidden');
 var container = document.querySelector('.pictures');
 var template = document.querySelector('template');
+
 var templateContainer = 'content' in template ? template.content : template;
+var imageTemplate = templateContainer.querySelector('.picture');
 
 var loadImages = function(picture) {
-  var imageElement = templateContainer.querySelector('.picture').cloneNode(true);
+  var imageElement = imageTemplate.cloneNode(true);
   imageElement.querySelector('.picture-likes').textContent = picture.likes;
   imageElement.querySelector('.picture-comments').textContent = picture.comments;
+  console.log(templateContainer);
 
   var image = new Image(182, 182);
   image.onload = function() {
@@ -127,7 +130,7 @@ var loadImages = function(picture) {
   image.src = picture.url;
 
   image.onerror = function() {
-    document.querySelector('.picture').classList.add('picture-load-failure');
+    imageElement.querySelector('.picture').classList.add('picture-load-failure');
   };
 
   return imageElement;
