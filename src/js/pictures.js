@@ -117,10 +117,12 @@
   var template = document.querySelector('template');
   var templateContainer = 'content' in template ? template.content : template;
   var imageTemplate = templateContainer.querySelector('.picture');
+
   var loadImages = function(picture) {
     var imageElement = imageTemplate.cloneNode(true);
     imageElement.querySelector('.picture-likes').textContent = picture.likes;
     imageElement.querySelector('.picture-comments').textContent = picture.comments;
+    imageElement.href = picture.url;
     var image = new Image(182, 182);
     image.onload = function() {
       imageElement.querySelector('img').src = image.src;
