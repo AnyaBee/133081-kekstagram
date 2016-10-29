@@ -115,24 +115,30 @@ var container = document.querySelector('.pictures');
 var template = document.querySelector('template');
 var templateContainer = 'content' in template ? template.content : template;
 
-var loadImages = function(pictures) {
+var loadImages = function(picture) {
   var imageElement = templateContainer.querySelector('.picture').cloneNode(true);
-  imageElement.querySelector('.picture-likes').textContent = pictures.likes;
-  imageElement.querySelector('.picture-comments').textContent = pictures.comments;
+  imageElement.querySelector('.picture-likes').textContent = picture.likes;
+  imageElement.querySelector('.picture-comments').textContent = picture.comments;
 
-  var image = new Image();
+  var image = new Image(182, 182);
   image.onload = function() {
-    image.src = pictures.url;
+    imageElement.querySelector('.picture-url').src = image.src;
   };
-  image.onerror = function() {
-    imageElement.classList.add(url.failed);
-  };
-};
+  image.src = picture.url;
 
+  imageElement.querySelector('.picture-url').onerror = function() {
+    document.querySelector('.picture').classList.add('picture-load-failure');
+  };
+
+  return imageElement;
+};
 var initialiseImages = function(images) {
-  images.forEach(function(pictures) {
-    container.appendChild(loadImages(pictures));
+  images.forEach(function(picture) {
+    container.appendChild(loadImages(picture));
   });
 };
 
 initialiseImages(pictures);
+document.querySelector('.filters').classList.remove('hidden');
+
+
