@@ -4,6 +4,7 @@
 'use strict';
 
 (function() {
+  /*eslint-disable*/
   var pictures = [{
       "likes": 40,
       "comments": 12,
@@ -110,6 +111,7 @@
       "url": "photos/26.mp4",
       "preview": "photos/26.jpg"
     }];
+  /*eslint-disable*/
   document.querySelector('.filters').classList.add('hidden');
   var container = document.querySelector('.pictures');
   var template = document.querySelector('template');
