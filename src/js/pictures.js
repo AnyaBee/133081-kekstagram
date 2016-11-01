@@ -3,8 +3,27 @@
  */
 'use strict';
 
-(function() {
+var IMAGES_URL = 'http://localhost:1507/api/pictures?callback=__JSONPCallBackImages';
+var loadImageList = function(url, callback, __JSONPCallBackImages){
+  if (!__JSONPCallBackImages) {
+    __JSONPCallBackImages = 'callback' + Date.now();
+  }
+  window[__JSONPCallBackImages] = function(data) {
+    callback(data);
+  };
+  var script = document.createElement('script');
+  script.src = url + '?callback=' + __JSONPCallBackImages;
+  document.body.appendChild(script);
+};
+
+loadImageList(IMAGES_URL, function(data) {
+  console.log(data);
+}, '__JSONPCallBackImages');
+
+
+//(function() {
   /*eslint-disable*/
+  /*
   var pictures = [{
       "likes": 40,
       "comments": 12,
@@ -111,6 +130,7 @@
       "url": "photos/26.mp4",
       "preview": "photos/26.jpg"
     }];
+*/
   /*eslint-disable*/
   document.querySelector('.filters').classList.add('hidden');
   var container = document.querySelector('.pictures');
@@ -134,12 +154,14 @@
     image.src = picture.url;
     return imageElement;
   };
+
   var initialiseImages = function(images) {
     images.forEach(function(picture) {
       container.appendChild(loadImages(picture));
     });
   };
-  initialiseImages(pictures);
+  //initialiseImages(pictures);
   document.querySelector('.filters').classList.remove('hidden');
 
-})();
+//})();
+
