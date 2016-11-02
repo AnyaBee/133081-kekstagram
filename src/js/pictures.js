@@ -46,12 +46,11 @@
   var initialiseImages = function(images) {
     images.forEach(function(picture) {
       container.appendChild(loadImages(picture));
+      document.querySelector('.filters').classList.remove('hidden');
     });
   };
 
   loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
-
-  document.querySelector('.filters').classList.remove('hidden');
 
 })();
 
