@@ -11,7 +11,7 @@
   var templateContainer = 'content' in template ? template.content : template;
   var imageTemplate = templateContainer.querySelector('.picture');
 
-  var IMAGES_URL = 'http://localhost:1507/api/pictures';
+  var pictures = 'http://localhost:1507/api/pictures';
 
   var loadImageList = function(url, callback, __JSONPCallBackImages){
     if (!__JSONPCallBackImages) {
@@ -49,7 +49,7 @@
     });
   };
 
-  loadImageList(IMAGES_URL, initialiseImages, '__JSONPCallBackImages');
+  loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
 
   document.querySelector('.filters').classList.remove('hidden');
 
