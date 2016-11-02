@@ -13,7 +13,7 @@
 
   var pictures = 'http://localhost:1507/api/pictures';
 
-  var loadImageList = function(url, callback, __JSONPCallBackImages){
+  var loadImageList = function(url, callback, __JSONPCallBackImages) {
     if (!__JSONPCallBackImages) {
       __JSONPCallBackImages = 'cb' + Date.now();
     }
