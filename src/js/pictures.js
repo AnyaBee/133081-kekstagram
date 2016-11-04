@@ -3,17 +3,22 @@
  */
 'use strict';
 
-(function() {
+var loadImageList = require('load');
+var initialiseImages = require('picture');
 
+loadImageList('http://localhost:1507/api/pictures', function(images) {
+  images.forEach(loadImages);
+});
+  var pictures = 'http://localhost:1507/api/pictures';
   document.querySelector('.filters').classList.add('hidden');
-  var container = document.querySelector('.pictures');
+//  var container = document.querySelector('.pictures');
   var template = document.querySelector('template');
   var templateContainer = 'content' in template ? template.content : template;
   var imageTemplate = templateContainer.querySelector('.picture');
 
-  var pictures = 'http://localhost:1507/api/pictures';
+  //var pictures = 'http://localhost:1507/api/pictures';
 
-  var loadImageList = function(url, callback, __JSONPCallBackImages) {
+  /*var loadImageList = function(url, callback, __JSONPCallBackImages) {
     if (!__JSONPCallBackImages) {
       __JSONPCallBackImages = 'cb' + Date.now();
     }
@@ -25,7 +30,7 @@
     script.src = url + '?callback=' + __JSONPCallBackImages;
     document.body.appendChild(script);
   };
-
+*/
   var loadImages = function(picture) {
     var imageElement = imageTemplate.cloneNode(true);
     imageElement.querySelector('.picture-likes').textContent = picture.likes;
@@ -42,7 +47,7 @@
     image.src = picture.url;
     return imageElement;
   };
-
+/*
   var initialiseImages = function(images) {
     images.forEach(function(picture) {
       container.appendChild(loadImages(picture));
@@ -50,8 +55,7 @@
     });
   };
 
-  loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
 
-})();
+*/
 
-
+loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
