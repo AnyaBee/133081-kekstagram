@@ -3,33 +3,15 @@
  */
 'use strict';
 
+var loadImageList = require('./load');
+var initialiseImages = require('./picture');
 module.exports = function() {
 
-  /*loadImageList('http://localhost:1507/api/pictures', function(images) {
-   images.forEach(loadImages);
-   */
-  // var pictures = 'http://localhost:1507/api/pictures';
   document.querySelector('.filters').classList.add('hidden');
-//  var container = document.querySelector('.pictures');
   var template = document.querySelector('template');
   var templateContainer = 'content' in template ? template.content : template;
   var imageTemplate = templateContainer.querySelector('.picture');
 
-  //var pictures = 'http://localhost:1507/api/pictures';
-
-  /*var loadImageList = function(url, callback, __JSONPCallBackImages) {
-   if (!__JSONPCallBackImages) {
-   __JSONPCallBackImages = 'cb' + Date.now();
-   }
-   window[__JSONPCallBackImages] = function(data) {
-   callback(data);
-   };
-
-   var script = document.createElement('script');
-   script.src = url + '?callback=' + __JSONPCallBackImages;
-   document.body.appendChild(script);
-   };
-   */
   var loadImages = function(picture) {
     var imageElement = imageTemplate.cloneNode(true);
     imageElement.querySelector('.picture-likes').textContent = picture.likes;
@@ -40,7 +22,7 @@ module.exports = function() {
       imageElement.querySelector('img').src = image.src;
     };
 
-    image.onerror = function () {
+    image.onerror = function() {
       imageElement.classList.add('picture-load-failure');
     };
     image.src = picture.url;
@@ -53,10 +35,10 @@ module.exports = function() {
    document.querySelector('.filters').classList.remove('hidden');
    });
    };
-
-
    */
-  loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
-};
+  //loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
+}();
 
-
+/*loadImageList('http://localhost:1507/api/pictures', function(images)) {
+ images.forEach(loadImages)};
+ */
