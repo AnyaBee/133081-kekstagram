@@ -9,7 +9,7 @@ module.exports = function(picture) {
   var templateContainer = 'content' in template ? template.content : template;
   var imageTemplate = templateContainer.querySelector('.picture');
 
-  var loadImages = function(picture) {
+  var renderPictureBlock = function() {
     var imageElement = imageTemplate.cloneNode(true);
     imageElement.querySelector('.picture-likes').textContent = picture.likes;
     imageElement.querySelector('.picture-comments').textContent = picture.comments;
@@ -26,5 +26,5 @@ module.exports = function(picture) {
     image.src = picture.url;
     return imageElement;
   };
-  return loadImages(picture);
+  return renderPictureBlock(picture);
 };

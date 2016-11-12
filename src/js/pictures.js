@@ -3,7 +3,7 @@
  */
 'use strict';
 var loadImageList = require('./load');
-var loadImages = require('./picture');
+var renderPictureBlock = require('./picture');
 
 module.exports = function() {
 
@@ -12,7 +12,7 @@ module.exports = function() {
 
   var initialiseImages = function(images) {
     images.forEach(function(picture) {
-      container.appendChild(loadImages(picture));
+      container.appendChild(renderPictureBlock(picture));
       document.querySelector('.filters').classList.remove('hidden');
     });
   };

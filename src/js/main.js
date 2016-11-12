@@ -1,7 +1,7 @@
 'use strict';
 
-var uploadImages = require('./upload');
-var initialiseImages = require('./pictures');
+require('./upload');
+require('./pictures');
 
 
 
