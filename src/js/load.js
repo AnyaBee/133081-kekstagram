@@ -15,7 +15,6 @@ module.exports = function(url, callback, __JSONPCallBackImages) {
   var script = document.createElement('script');
   script.src = url + '?callback=' + __JSONPCallBackImages;
   document.body.appendChild(script);
-};
-//loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
 
-//loadImageList;
+};
+

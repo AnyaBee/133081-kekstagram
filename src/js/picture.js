@@ -3,8 +3,7 @@
  */
 'use strict';
 
-module.exports = function() {
-
+module.exports = function(picture) {
   document.querySelector('.filters').classList.add('hidden');
   var template = document.querySelector('template');
   var templateContainer = 'content' in template ? template.content : template;
@@ -16,7 +15,8 @@ module.exports = function() {
     imageElement.querySelector('.picture-comments').textContent = picture.comments;
     imageElement.href = picture.url;
     var image = new Image(182, 182);
-    image.onload = function () {
+
+    image.onload = function() {
       imageElement.querySelector('img').src = image.src;
     };
 
@@ -26,13 +26,5 @@ module.exports = function() {
     image.src = picture.url;
     return imageElement;
   };
-  /*
-   var initialiseImages = function(images) {
-   images.forEach(function(picture) {
-   container.appendChild(loadImages(picture));
-   document.querySelector('.filters').classList.remove('hidden');
-   });
-   };
-   */
-  //loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
+  return loadImages(picture);
 };
