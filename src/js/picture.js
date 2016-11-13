@@ -3,6 +3,8 @@
  */
 'use strict';
 
+require('./gallery');
+
 module.exports = function(picture) {
   document.querySelector('.filters').classList.add('hidden');
   var template = document.querySelector('template');

@@ -4,6 +4,7 @@
 'use strict';
 var loadImageList = require('./load');
 var renderPictureBlock = require('./picture');
+require('./gallery');
 
 module.exports = function() {
 
