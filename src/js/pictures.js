@@ -3,8 +3,8 @@
  */
 'use strict';
 var loadImageList = require('./load');
-var renderPictureBlock = require('./picture');
-var Gallery = require('./gallery');
+var Picture = require('./picture');
+var galleryObject = require('./gallery');
 
 module.exports = function() {
 
@@ -12,11 +12,13 @@ module.exports = function() {
   var pictures = 'http://localhost:1507/api/pictures';
 
   var initialiseImages = function(images) {
-    images.forEach(function(picture) {
-      container.appendChild(renderPictureBlock(picture));
+    images.forEach(function(picture, index) {
+      var pictureBlock = new Picture(picture, index);
+      container.appendChild(pictureBlock.element);
       document.querySelector('.filters').classList.remove('hidden');
     });
-    Gallery.setPictures();
+
+    galleryObject.setPictures(images);
   };
 
   loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
