@@ -4,7 +4,7 @@
 'use strict';
 var loadImageList = require('./load');
 var renderPictureBlock = require('./picture');
-require('./gallery');
+var Gallery = require('./gallery');
 
 module.exports = function() {
 
@@ -16,6 +16,7 @@ module.exports = function() {
       container.appendChild(renderPictureBlock(picture));
       document.querySelector('.filters').classList.remove('hidden');
     });
+    Gallery.setPictures();
   };
 
   loadImageList(pictures, initialiseImages, '__JSONPCallBackImages');
