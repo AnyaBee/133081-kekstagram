@@ -5,7 +5,7 @@
 
 var galleryObject = require('./gallery');
 
-
+//вызывает показ фотогалереи
 var Picture = function(img, index) {
   this.img = img;
   this.element = this.renderPictureBlock(this.img);
