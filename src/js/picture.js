@@ -8,7 +8,7 @@ var galleryObject = require('./gallery');
 //вызывает показ фотогалереи
 var Picture = function(data, index) {
   this.data = data;
-  this.element = this.renderPictureBlock(this.data);
+  this.element = this.renderPictureBlock();
   this.element.onclick = function(evt) {
     evt.preventDefault();
     galleryObject.show(index);
