@@ -19,15 +19,15 @@ Picture.prototype.remove = function() {
   this.element.onclick = null;
 };
 
-Picture.prototype.renderPictureBlock = function(picture) {
+Picture.prototype.renderPictureBlock = function(data) {
   document.querySelector('.filters').classList.add('hidden');
   var template = document.querySelector('template');
   var templateContainer = 'content' in template ? template.content : template;
   var imageTemplate = templateContainer.querySelector('.picture');
   var imageElement = imageTemplate.cloneNode(true);
-  imageElement.querySelector('.picture-likes').textContent = picture.likes;
-  imageElement.querySelector('.picture-comments').textContent = picture.comments;
-  imageElement.href = picture.url;
+  imageElement.querySelector('.picture-likes').textContent = data.likes;
+  imageElement.querySelector('.picture-comments').textContent = data.comments;
+  imageElement.href = data.url;
   var image = new Image(182, 182);
   image.onload = function() {
     imageElement.querySelector('img').src = image.src;
@@ -35,7 +35,7 @@ Picture.prototype.renderPictureBlock = function(picture) {
   image.onerror = function() {
     imageElement.classList.add('picture-load-failure');
   };
-  image.src = picture.url;
+  image.src = data.url;
   return imageElement;
 };
 
