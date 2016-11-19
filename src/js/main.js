@@ -1,7 +1,8 @@
 'use strict';
 
 require('./upload');
-require('./pictures');
+var loadImages = require('./pictures');
+loadImages('filter-popular', 0);
 
 
 
