@@ -12,9 +12,6 @@ var loadImageList = function(url, params, callback) {
   };
 
   xhr.open('GET', url + '?' + 'from=' + params.from + '&to=' + params.to + '&filter=' + params.filter);
-  xhr.addEventListener('load', function(evt) {
-    console.log(evt);
-  });
   xhr.send();
 };
 
