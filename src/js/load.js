@@ -3,18 +3,16 @@
  */
 'use strict';
 
-module.exports = function(url, callback, __JSONPCallBackImages) {
+var loadImageList = function(url, params, callback) {
+  var xhr = new XMLHttpRequest();
 
-  if (!__JSONPCallBackImages) {
-    __JSONPCallBackImages = 'cb' + Date.now();
-  }
-  window[__JSONPCallBackImages] = function(data) {
-    callback(data);
-  };
 
-  var script = document.createElement('script');
-  script.src = url + '?callback=' + __JSONPCallBackImages;
-  document.body.appendChild(script);
-
+  xhr.open('GET', url + '?' + 'from=' + params.from + '&to=' + params.to + '&filter=' + params.filter);
+  xhr.addEventListener('load', function(evt) {
+    var loadedData = JSON.parse(evt.target.response);
+    callback(loadedData);
+  });
+  xhr.send();
 };
 
+module.exports = loadImageList;
