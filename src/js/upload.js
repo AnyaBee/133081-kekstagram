@@ -92,7 +92,6 @@ module.exports = function() {
     var inputRestrictions = resizeX + resizeSize <= currentResizer._image.naturalWidth && resizeY + resizeSize <= currentResizer._image.naturalHeight;
     forwardButton.disabled = !inputRestrictions;
     currentResizer.setConstraint(resizeX, resizeY, resizeSize);
-    return inputRestrictions;
   });
   /**
    * Форма загрузки изображения.
